@@ -557,7 +557,7 @@ class Controls extends FlxActionSet
 			action.addGamepad(button, state, id);
 	}
 
-	static function removeButtons(action:FlxActionDigital, gamepadID:Int, buttons:Array<FlxGamepadInputID>)
+	function removeButtons(action:FlxActionDigital, gamepadID:Int, buttons:Array<FlxGamepadInputID>)
 	{
 		var i = action.inputs.length;
 		while (i-- > 0)
@@ -568,7 +568,7 @@ class Controls extends FlxActionSet
 		}
 	}
 
-	public function getInputsFor(control:Control, device:Device, ?list:Array<Int>):Array<Int>
+	function getInputsFor(control:Control, device:Device, ?list:Array<Int>):Array<Int>
 	{
 		if (list == null)
 			list = [];
@@ -591,7 +591,7 @@ class Controls extends FlxActionSet
 		return list;
 	}
 
-	public function removeDevice(device:Device)
+	function removeDevice(device:Device)
 	{
 		switch (device)
 		{
@@ -602,7 +602,7 @@ class Controls extends FlxActionSet
 		}
 	}
 
-	static function isDevice(input:FlxActionInput, device:Device)
+	function isDevice(input:FlxActionInput, device:Device)
 	{
 		return switch device
 		{
@@ -611,7 +611,7 @@ class Controls extends FlxActionSet
 		}
 	}
 
-	inline static function isGamepad(input:FlxActionInput, deviceID:Int)
+	inline function isGamepad(input:FlxActionInput, deviceID:Int)
 	{
 		return input.device == GAMEPAD && (deviceID == FlxInputDeviceID.ALL || input.deviceID == deviceID);
 	}
