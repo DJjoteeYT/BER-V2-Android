@@ -546,7 +546,7 @@ class Controls extends FlxActionSet
 	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
 	 * If binder is a literal you can inline this
 	 */
-	public function unbindButtons(control:Control, gamepadID:Int, buttons)
+	function unbindButtons(control:Control, gamepadID:Int, buttons)
 	{
 		inline forEachBound(control, (action, _) -> removeButtons(action, gamepadID, buttons));
 	}
