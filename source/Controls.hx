@@ -551,7 +551,7 @@ class Controls extends FlxActionSet
 		inline forEachBound(control, (action, _) -> removeButtons(action, gamepadID, buttons));
 	}
 
-	inline static function addButtons(action:FlxActionDigital, buttons:Array<FlxGamepadInputID>, state, id)
+	inline function addButtons(action:FlxActionDigital, buttons:Array<FlxGamepadInputID>, state, id)
 	{
 		for (button in buttons)
 			action.addGamepad(button, state, id);
