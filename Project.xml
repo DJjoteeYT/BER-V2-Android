@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Bruh Engine Reborn" file="BER" packageName="com.tylertehnub.bruhengine" package="com.tylerrtehnub.bruhengine" main="Main" version="0.2.7" company="TylerTehNub" />
+	<app title="Bruh Engine" file="BruhEngine" packageName="com.tylertehnub.bruhengine" package="com.tylertehnub.bruhengine" main="Main" version="0.2.7" company="TylerTehNub" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -42,19 +42,24 @@
 	<set name="BUILD_DIR" value="export/32bit" if="32bits" />
 
 	<classpath name="source" />
-
-	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
-	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
 	
-	<!-- BRUH ENGINE REBORN CUSTOMIZATION -->
-	<define name="MODS_ALLOWED" if="desktop || android"/>
-	<define name="LUA_ALLOWED" if="windows || android"/>
+	<!-- PSYCH ENGINE CUSTOMIZATION -->
+	<define name="MODS_ALLOWED" if="desktop || android" />
+	<define name="LUA_ALLOWED" if="desktop || android" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="VIDEOS_ALLOWED" if="web || windows || android" unless="32bits"/>
-	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS ON TITLE SCREEN -->
+	<define name="PSYCH_WATERMARKS" /> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
+	<define name="TITLE_SCREEN_EASTER_EGG" /> <!-- DELETE THE if="officialBuild" for enabling this on an unofficial build --> <!-- Edit: i forgot the port is unofficial lmao -->
 
-	<!-- DONT ENABLE THIS -->
-	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>
+	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
+	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
+	<section if="TITLE_SCREEN_EASTER_EGG">
+		<assets path="assets/secrets" rename="assets" exclude="*.ogg" if="web"/>
+		<assets path="assets/secrets" rename="assets" exclude="*.mp3"  unless="web"/>
+	</section>
+
+	<!-- DONT ENABLE THIS --> <!-- Edit: i forgot the port is unofficial lmao -->
+	<define name="CHECK_FOR_UPDATES" />
 
 	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
@@ -118,20 +123,20 @@
 
 	<!--In case you want to use the addons package-->
 	<haxelib name="flixel-addons" />
-	<!-- <haxelib name="hscript" /> -->
+	<haxelib name="hscript" />
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="faxe" if='switch'/>
-	<!-- <haxelib name="polymod"/> -->
+	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="desktop"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 	<haxelib name="extension-videoview" if="android"/>
-        <haxelib name="extension-androidtools" if="android"/>
+	<haxelib name="extension-androidtools" if="android"/>
 
-        <config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
-        <config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/
+	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" if="android"/>
+	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" if="android"/>
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
@@ -170,8 +175,8 @@
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
-	
-	<!-- make's game use less ram -->
+
+        <!-- make's game use less ram -->
         <haxedef name="HXCPP_GC_BIG_BLOCKS"/>
 
 	<!-- Akways enable Null Object Reference check -->
